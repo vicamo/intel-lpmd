@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/default.mk
+
+#export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_autoreconf:
+	dh_autoreconf -- env NO_CONFIGURE=1 ./autogen.sh
+
+override_dh_auto_configure:
+	# gtk-doc is not yet fully enabled. Disable explicitly.
+	dh_auto_configure -- \
+		--with-dbus-sys-dir=/usr/share/dbus-1/system.d \
+		--disable-gtk-doc

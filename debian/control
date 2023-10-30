@@ -1,0 +1,35 @@
+Source: intel-lpmd
+Section: admin
+Priority: optional
+Maintainer: You-Sheng Yang <vicamo.yang@canonical.com>
+Build-Depends:
+ automake,
+ autoconf-archive,
+ debhelper-compat (= 13),
+ dh-autoreconf,
+ gtk-doc-tools,
+ libdbus-glib-1-dev,
+ libglib2.0-dev,
+ libnl-3-dev,
+ libnl-genl-3-dev,
+ libsystemd-dev,
+ libxml2-dev,
+ systemd-dev,
+Standards-Version: 4.5.1
+Homepage: https://github.com/intel/intel-lpmd
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/intel/intel-lpmd.git
+Vcs-Browser: https://github.com/intel/intel-lpmd/tree/main/
+
+Package: intel-lpmd
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Intel Low Power Model Daemon
+ Intel Low Power Model Daemon is a Linux daemon used to optimize active idle
+ power. It selects a set of most power efficient CPUs based on configuration
+ file or CPU topology. Based on system utilization and other hints, it puts the
+ system into Low Power Mode by activate the power efficient CPUs and disable the
+ rest, and restore the system from Low Power Mode by activating all CPUs.
+ .
+ This package contains the Intel Low Power Model Daemon.
